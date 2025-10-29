@@ -38,8 +38,8 @@ export default function BackgroundVideo({
   useEffect(() => {
     // Start playing video when loaded
     if (videoRef.current && isLoaded) {
-      videoRef.current.play().catch((err) => {
-        console.log("Autoplay prevented:", err);
+      videoRef.current.play().catch(() => {
+        // Autoplay prevented by browser, video will start when user interacts
       });
     }
   }, [isLoaded]);

@@ -1,4 +1,4 @@
-// Пример типов для API данных
+// Example types for API data
 export interface Villa {
   id: number;
   title: string;

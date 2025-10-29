@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// Создаем базовый instance axios с настройками
+// Create base axios instance with configuration
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || "https://api.example.com",
   timeout: 10000,
@@ -9,10 +9,10 @@ export const api = axios.create({
   },
 });
 
-// Interceptor для обработки запросов
+// Request interceptor
 api.interceptors.request.use(
   (config) => {
-    // Здесь можно добавить токен авторизации
+    // Add authorization token here if needed
     // const token = localStorage.getItem('token');
     // if (token) {
     //   config.headers.Authorization = `Bearer ${token}`;
@@ -24,7 +24,7 @@ api.interceptors.request.use(
   }
 );
 
-// Interceptor для обработки ответов
+// Response interceptor
 api.interceptors.response.use(
   (response) => {
     return response;

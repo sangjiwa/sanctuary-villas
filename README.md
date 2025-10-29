@@ -1,245 +1,93 @@
-# Sanctuary Villas - Landing Page
+# Sanctuary Villas - Luxury Villas in Ubud, Bali
 
-Современный лендинг для премиальных вилл, построенный на Next.js 15 с использованием современных технологий.
+Modern landing page for premium villas built with Next.js 15 and latest web technologies.
 
-## Технологии
+## Tech Stack
 
-- **Next.js 15** (App Router) - React фреймворк с SSR/SSG
-- **TypeScript** - типизация
-- **Tailwind CSS** - стилизация
-- **Axios** - HTTP клиент для API запросов
-- **TanStack Query (React Query)** - управление состоянием сервера
-- **Swiper** - современный слайдер
-- **Framer Motion** - анимации
+- **Next.js 15** (App Router) - React framework with SSR/SSG
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Axios** - HTTP client for API requests
+- **TanStack Query (React Query)** - Server state management
+- **Swiper** - Modern carousel/slider
+- **Framer Motion** - Animations
+- **React Day Picker** - Date selection for bookings
 
-## Структура проекта
+## Getting Started
 
-```
-sanctuary_villas/
-├── app/                      # Next.js App Router
-│   ├── layout.tsx           # Главный layout
-│   ├── page.tsx             # Главная страница
-│   ├── providers.tsx        # React Query provider
-│   └── globals.css          # Глобальные стили
-├── components/              # Компоненты
-│   ├── ui/                  # UI компоненты
-│   │   └── VillaSlider.tsx # Слайдер на базе Swiper
-│   ├── sections/            # Секции лендинга
-│   │   ├── HeroSection.tsx
-│   │   ├── FeaturesSection.tsx
-│   │   └── VillasSection.tsx
-│   └── shared/              # Общие компоненты
-├── lib/                     # Библиотеки и утилиты
-│   ├── api/                 # API клиенты
-│   │   ├── axios.ts        # Настроенный axios instance
-│   │   └── villas.ts       # API запросы для вилл
-│   ├── hooks/               # Custom React hooks
-│   │   └── useVillas.ts    # Hook для работы с виллами
-│   └── utils/               # Утилиты
-├── types/                   # TypeScript типы
-│   └── index.ts
-└── public/                  # Статические файлы
-```
+### Prerequisites
 
-## Установка и запуск
+- Node.js 18+ and npm
 
-### 1. Установка зависимостей
+### Installation
 
 ```bash
 npm install
 ```
 
-### 2. Настройка переменных окружения
+### Environment Setup
 
-Создайте файл `.env.local` на основе `.env.local.example`:
+Create a `.env.local` file based on `.env.example`:
 
 ```bash
-cp .env.local.example .env.local
+cp .env.example .env.local
 ```
 
-Отредактируйте `.env.local` и укажите URL вашего API:
+Add your Boom API credentials to `.env.local`:
 
 ```env
-NEXT_PUBLIC_API_URL=https://your-api-url.com
+BOOM_CLIENT_ID=your_client_id
+BOOM_CLIENT_SECRET=your_client_secret
+BOOM_API_BASE_URL=https://app.boomnow.com/open_api/v1
 ```
 
-### 3. Запуск dev сервера
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
 ```
 
-Откройте [http://localhost:3000](http://localhost:3000) в браузере.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 4. Сборка для продакшна
+### Production Build
 
 ```bash
 npm run build
 npm run start
 ```
 
-## Основные возможности
-
-### 1. Слайдер (Swiper)
-
-Компонент `VillaSlider` находится в `components/ui/VillaSlider.tsx`:
-
-```tsx
-<VillaSlider
-  slides={slides}
-  autoplay
-  effect="fade"
-/>
-```
-
-### 2. Анимации (Framer Motion)
-
-Все секции используют Framer Motion для плавных анимаций при появлении:
-
-```tsx
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
->
-  Контент
-</motion.div>
-```
-
-### 3. API интеграция (Axios + React Query)
-
-Пример использования:
-
-```tsx
-import { useVillas } from "@/lib/hooks/useVillas";
-
-function Component() {
-  const { data, isLoading, error } = useVillas();
-
-  if (isLoading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка</div>;
-
-  return <div>{data?.data.map(...)}</div>;
-}
-```
-
-### 4. Настройка API
-
-Базовая конфигурация Axios находится в `lib/api/axios.ts`. Здесь можно:
-- Добавить interceptors для токенов
-- Настроить обработку ошибок
-- Изменить базовый URL
-
-## Кастомизация
-
-### Цвета
-
-Цвета настраиваются в `tailwind.config.ts`:
-
-```ts
-theme: {
-  extend: {
-    colors: {
-      primary: "#4F46E5", // Indigo
-      // добавьте свои цвета
-    },
-  },
-}
-```
-
-### Шрифты
-
-Шрифты можно изменить в `app/layout.tsx` используя `next/font`.
-
-### Анимации
-
-Параметры анимаций настраиваются в компонентах секций в папке `components/sections/`.
-
-## API Endpoints
-
-Примеры endpoints в `lib/api/villas.ts`:
-
-- `GET /villas` - получить все виллы
-- `GET /villas/:id` - получить виллу по ID
-- `POST /villas` - создать виллу
-
-Адаптируйте под ваш API.
-
-## Полезные команды
-
-```bash
-npm run dev      # Запуск dev сервера
-npm run build    # Сборка для продакшна
-npm run start    # Запуск продакшн сервера
-npm run lint     # Проверка кода
-```
-
 ## Deployment
 
-### Prerequisites
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions to Vercel with custom domain setup.
 
-1. **GitHub Repository**: Push your code to GitHub
-2. **Vercel Account**: Sign up at [vercel.com](https://vercel.com)
-3. **Environment Variables**: Prepare your Boom API credentials
+### Quick Deploy to Vercel
 
-### Deploy to Vercel
+1. Push code to GitHub
+2. Import project at [vercel.com/new](https://vercel.com/new)
+3. Add environment variables in Vercel dashboard
+4. Deploy
 
-#### 1. Import Project
+## Features
 
-- Go to [vercel.com/new](https://vercel.com/new)
-- Import your GitHub repository
-- Vercel will automatically detect Next.js
+- SEO optimized with structured data, sitemap, and meta tags
+- Integration with Boom Booking API
+- Fully responsive design for all devices
+- Optimized images (WebP + JPEG fallbacks)
+- Smooth animations and transitions
+- Contact forms and booking system
+- Testimonials carousel
 
-#### 2. Configure Environment Variables
-
-Add the following environment variables in Vercel dashboard:
-
-```
-BOOM_CLIENT_ID=your_actual_client_id
-BOOM_CLIENT_SECRET=your_actual_client_secret
-BOOM_API_BASE_URL=https://app.boomnow.com/open_api/v1
-```
-
-#### 3. Deploy
-
-- Click "Deploy"
-- Wait for the build to complete
-- Your site will be live at `your-project.vercel.app`
-
-#### 4. Add Custom Domain
-
-- Go to Project Settings → Domains
-- Add your custom domain (e.g., `sanctuaryvillas.com`)
-- Follow DNS configuration instructions
-- SSL certificate will be automatically provisioned
-
-### Vercel CLI (Alternative)
+## Scripts
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-
-# Deploy to production
-vercel --prod
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
 ```
 
-For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
-
-## Дальнейшее развитие
-
-Рекомендации для расширения проекта:
-
-1. **Формы** - добавить React Hook Form для форм бронирования
-2. **Валидация** - добавить Zod для валидации данных
-3. **UI компоненты** - добавить shadcn/ui для готовых компонентов
-4. **Мультиязычность** - добавить next-intl для переводов
-5. **SEO** - настроить метаданные в каждой странице
-6. **Изображения** - оптимизировать через next/image
-7. **Analytics** - добавить Google Analytics или Vercel Analytics
-
-## Лицензия
+## License
 
 MIT

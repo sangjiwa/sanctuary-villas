@@ -10,9 +10,9 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: "1rem",     // 16px для мобильных
-        md: "2.5rem",        // 40px для планшетов (768px+)
-        lg: "3.5rem",        // 56px для десктопа (1024px+)
+        DEFAULT: "1rem",     // 16px for mobile
+        md: "2.5rem",        // 40px for tablets (768px+)
+        lg: "3.5rem",        // 56px for desktop (1024px+)
       },
       screens: {
         sm: "100%",

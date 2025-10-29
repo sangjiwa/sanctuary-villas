@@ -5,7 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 
-// Пример данных вилл (позже будет из API)
+// Example villa data (will be from API later)
 const villas = [
   {
     id: 1,
